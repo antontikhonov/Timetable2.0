@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ISTU</string>
+
+    <string name="timetable">Расписание</string>
+    <string name="chat">Чатик</string>
+    <string name="news">Новости</string>
+    <string name="settings">Настройки</string>
+
+    <string name="odd_week">неделя над чертой</string>
+    <string name="even_week">неделя под чертой</string>
+
+    <string name="monday">ПН</string>
+    <string name="tuesday">ВТ</string>
+    <string name="wednesday">СР</string>
+    <string name="thursday">ЧТ</string>
+    <string name="friday">ПТ</string>
+    <string name="saturday">СБ</string>
+    <string name="switch_to_even_button">А что там под чертой?</string>
+    <string name="switch_to_odd_button">А что там\nнад чертой?</string>
+    <string name="choice_group_button">Выбор группы</string>
+    <string name="choice_theme_button">Выбор фона</string>
+
+    <string name="theme_changed_toast_message">Фон изменён на %1$s</string>
+</resources>

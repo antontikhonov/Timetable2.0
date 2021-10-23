@@ -30,7 +30,7 @@
         android:gravity="center"
         android:paddingHorizontal="64dp"
         android:paddingVertical="16dp"
-        android:text="Чатик пока не готов ;("
+        android:text="@string/chat_not_ready"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

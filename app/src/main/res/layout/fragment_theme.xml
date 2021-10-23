@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/dark_black_transparent"
         android:padding="16dp"
-        android:text="Выбор фона"
+        android:text="@string/choice_theme_button"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,10 +25,22 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:paddingHorizontal="8dp"
         android:paddingBottom="@dimen/bottom_navigation_view_height_dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/themeBackgroundHeader" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/themeBackgroundHeader"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

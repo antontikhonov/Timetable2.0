@@ -16,7 +16,7 @@ class TimetableApplication : Application() {
             modules(
                 appModule,
                 networkModule,
-                timetableViewModelModule
+                timetableViewModelModule,
             )
         }
     }

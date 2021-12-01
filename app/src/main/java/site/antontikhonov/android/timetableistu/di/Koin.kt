@@ -8,11 +8,10 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import site.antontikhonov.android.timetableistu.THEME_IMAGE_NAME
 import site.antontikhonov.android.timetableistu.data.*
+import site.antontikhonov.android.timetableistu.ui.screen.news.NewsViewModel
 import site.antontikhonov.android.timetableistu.ui.screen.theme.ThemeViewModel
 import site.antontikhonov.android.timetableistu.ui.screen.timetable.TimetableViewModel
-import java.io.FileOutputStream
 
 const val THEME_SHARED_PREFERENCES_NAME = "theme_preferences"
 private const val URL = "https://antontikhonov.ru/timetable/"
@@ -21,9 +20,6 @@ val appModule = module {
 
     single<SharedPreferences> {
         androidApplication().getSharedPreferences(THEME_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
-    }
-    factory<FileOutputStream> {
-        androidApplication().openFileOutput(THEME_IMAGE_NAME, Context.MODE_PRIVATE)
     }
 }
 
@@ -41,7 +37,9 @@ val networkModule = module {
 val timetableViewModelModule = module {
     viewModel { TimetableViewModel(get()) }
     viewModel { ThemeViewModel(get()) }
+    viewModel { NewsViewModel(get()) }
 
     single<TimetableRepository> { TimetableRepositoryImpl(get()) }
     single<ThemeRepository> { ThemeRepositoryImpl(get()) }
+    single<NewsRepository> { NewsRepositoryImpl(get()) }
 }

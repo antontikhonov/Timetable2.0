@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/timetableHeader"
+        android:id="@+id/newsBackgroundHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/dark_black_transparent"
@@ -16,24 +16,31 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:textColor="@color/black" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/groupChoiceButton"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round"
-        android:gravity="center"
-        android:paddingHorizontal="64dp"
-        android:paddingVertical="16dp"
-        android:text="@string/news_not_found"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:layout_height="0dp"
+        android:paddingTop="16dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="8dp"
+        android:paddingBottom="@dimen/bottom_navigation_view_height_dp"
+        tools:listitem="@layout/item_news"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/newsBackgroundHeader" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newsBackgroundHeader"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

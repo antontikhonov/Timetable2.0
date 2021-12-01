@@ -13,7 +13,7 @@ import site.antontikhonov.android.timetableistu.R
 import site.antontikhonov.android.timetableistu.pojo.ThemeEntity
 
 class ThemeAdapter(
-    val onThemeClick: (String, String) -> Unit
+    val onThemeClick: (ThemeEntity) -> Unit
 ) : ListAdapter<ThemeEntity, ThemeAdapter.ThemeViewHolder>(ThemeDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThemeViewHolder {
@@ -33,7 +33,7 @@ class ThemeAdapter(
             header.text = theme.name
             Glide.with(view).load(theme.url).into(imageView)
             imageView.setOnClickListener {
-                onThemeClick(theme.url, theme.name)
+                onThemeClick(theme)
             }
         }
     }

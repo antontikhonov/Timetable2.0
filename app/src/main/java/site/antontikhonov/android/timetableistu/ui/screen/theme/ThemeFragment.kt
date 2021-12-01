@@ -23,6 +23,8 @@ import site.antontikhonov.android.timetableistu.architecture.State
 import site.antontikhonov.android.timetableistu.databinding.FragmentThemeBinding
 import site.antontikhonov.android.timetableistu.pojo.ThemeEntity
 
+private const val SPAN_COUNT_THEMES = 3
+
 class ThemeFragment : Fragment(R.layout.fragment_theme) {
 
     private val viewModel by viewModel<ThemeViewModel>()
@@ -35,13 +37,13 @@ class ThemeFragment : Fragment(R.layout.fragment_theme) {
         viewBinding = FragmentThemeBinding.bind(view)
         initView()
         viewModel.data.observe(viewLifecycleOwner, ::renderUi)
-        viewModel.loadGroupNumber()
+        viewModel.loadThemes()
     }
 
     private fun initView() {
         with(viewBinding) {
             rvTheme.adapter = adapter
-            (rvTheme.layoutManager as? GridLayoutManager)?.spanCount = 3
+            (rvTheme.layoutManager as? GridLayoutManager)?.spanCount = SPAN_COUNT_THEMES
             rvTheme.addItemDecoration(ThemeGridDecoration(R.dimen.theme_grid_spacing))
         }
     }
@@ -56,23 +58,24 @@ class ThemeFragment : Fragment(R.layout.fragment_theme) {
         }
     }
 
-    private fun saveImage(url: String, name: String) {
+    private fun saveImage(theme: ThemeEntity) {
         Glide.with(requireContext()).asBitmap()
-            .load(url)
+            .load(theme.url)
             .into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     activity?.openFileOutput(THEME_IMAGE_NAME, Context.MODE_PRIVATE).use {
                         resource.compress(Bitmap.CompressFormat.PNG, 100, it)
-                        (activity as? MainActivity)?.updateBackground()
-                        preferences.edit()
-                            ?.putBoolean(THEME_LOADED_TAG, true)
-                            ?.apply()
-                        Toast.makeText(
-                            requireContext(),
-                            String.format(getString(R.string.theme_changed_toast_message), name),
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
+                    (activity as? MainActivity)?.restartActivity()
+                    preferences.edit()
+                        ?.putBoolean(THEME_LOADED_TAG, true)
+                        ?.putBoolean("isDarkTheme", theme.isDarkTheme)
+                        ?.apply()
+                    Toast.makeText(
+                        requireContext(),
+                        String.format(getString(R.string.theme_changed_toast_message), theme.name),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) = Unit

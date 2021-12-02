@@ -8,8 +8,9 @@ import android.widget.ImageView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import org.koin.android.ext.android.inject
+import site.antontikhonov.android.timetableistu.databinding.ActivityMainBinding
 
 const val EXCEPTION_MESSAGE = "there is no such menu item"
 const val THEME_LOADED_TAG = "theme_loaded_tag"
@@ -19,19 +20,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fragmentNavigator: FragmentNavigator
     private val preferences: SharedPreferences by inject()
-    private val bottomNavigationView: BottomNavigationView by lazy { findViewById(R.id.bottom_navigation) }
+    private val viewBinding: ActivityMainBinding by viewBinding(ActivityMainBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initNavigation()
 
-        bottomNavigationView.setOnItemSelectedListener {
+        viewBinding.bottomNavigation.setOnItemSelectedListener {
             fragmentNavigator.navigateByItemId(it.itemId)
             true
         }
         if (savedInstanceState == null) {
-            bottomNavigationView.selectedItemId = R.id.timetable
+            viewBinding.bottomNavigation.selectedItemId = R.id.timetable
         }
         if (preferences.getBoolean(THEME_LOADED_TAG, false)) {
             updateUi()
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
                 fragmentNavigator = FragmentNavigator(it)
-                bottomNavigationView.setupWithNavController(it)
+                viewBinding.bottomNavigation.setupWithNavController(it)
             }
     }
 }

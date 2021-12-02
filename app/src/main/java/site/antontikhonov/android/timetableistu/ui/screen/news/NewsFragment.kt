@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import site.antontikhonov.android.timetableistu.R
 import site.antontikhonov.android.timetableistu.architecture.State
@@ -13,13 +14,12 @@ import site.antontikhonov.android.timetableistu.pojo.NewsEntity
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
 
-    private lateinit var viewBinding: FragmentNewsBinding
+    private val viewBinding by viewBinding(FragmentNewsBinding::bind)
     private val viewModel by viewModel<NewsViewModel>()
     private val adapter = NewsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = FragmentNewsBinding.bind(view)
         initView()
         viewModel.data.observe(viewLifecycleOwner, ::renderUi)
         viewModel.loadNews()

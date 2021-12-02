@@ -5,6 +5,7 @@ import android.view.View
 import androidx.annotation.DimenRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import site.antontikhonov.android.timetableistu.R
 import site.antontikhonov.android.timetableistu.databinding.FragmentDayBinding
@@ -17,14 +18,13 @@ class DayFragment : Fragment(R.layout.fragment_day) {
 
     private val viewModel by viewModel<TimetableViewModel>()
     private val adapter by lazy { TimetableAdapter() }
-    private lateinit var viewBinding: FragmentDayBinding
+    private val viewBinding: FragmentDayBinding by viewBinding(FragmentDayBinding::bind)
 
     @DimenRes
     private val startMargin = R.dimen.timetable_list_divider_margin
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = FragmentDayBinding.bind(view)
         with(viewBinding.recyclerView) {
             adapter = this@DayFragment.adapter
             addItemDecoration(ItemDecorator(getDimenInPixels(view, startMargin)))

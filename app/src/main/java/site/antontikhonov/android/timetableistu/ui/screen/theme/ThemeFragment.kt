@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -30,11 +31,10 @@ class ThemeFragment : Fragment(R.layout.fragment_theme) {
     private val viewModel by viewModel<ThemeViewModel>()
     private val preferences: SharedPreferences by inject()
     private val adapter = ThemeAdapter(::saveImage)
-    private lateinit var viewBinding: FragmentThemeBinding
+    private val viewBinding: FragmentThemeBinding by viewBinding(FragmentThemeBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = FragmentThemeBinding.bind(view)
         initView()
         viewModel.data.observe(viewLifecycleOwner, ::renderUi)
         viewModel.loadThemes()

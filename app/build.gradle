@@ -8,7 +8,7 @@ plugins {
 ext {
     retrofit_version = '2.9.0'
     nav_version = '2.3.5'
-    koin_version = '3.1.1'
+    koin_version = '3.1.2'
 }
 
 
@@ -46,6 +46,7 @@ android {
 
 dependencies {
 
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.2'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'

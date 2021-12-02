@@ -1,4 +1,4 @@
-package site.antontikhonov.android.timetableistu.ui.screen.theme
+package site.antontikhonov.android.timetableistu.ui.screen.news
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,23 +10,23 @@ import site.antontikhonov.android.timetableistu.architecture.State
 import site.antontikhonov.android.timetableistu.architecture.stateContent
 import site.antontikhonov.android.timetableistu.architecture.stateError
 import site.antontikhonov.android.timetableistu.architecture.stateLoading
-import site.antontikhonov.android.timetableistu.data.ThemeRepository
-import site.antontikhonov.android.timetableistu.pojo.ThemeEntity
+import site.antontikhonov.android.timetableistu.data.NewsRepository
+import site.antontikhonov.android.timetableistu.pojo.NewsEntity
 
-class ThemeViewModel(private val themeRepository: ThemeRepository) : ViewModel() {
+class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
 
-    val data: LiveData<State<List<ThemeEntity>>>
+    val data: LiveData<State<List<NewsEntity>>>
         get() = mutableData
-    private val mutableData = MutableLiveData<State<List<ThemeEntity>>>()
+    private val mutableData = MutableLiveData<State<List<NewsEntity>>>()
 
-    fun loadThemes() {
+    fun loadNews() {
         mutableData.value = stateLoading()
-        themeRepository.loadThemes()
+        newsRepository.loadNews()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
-                    mutableData.value = stateContent(it.themes)
+                    mutableData.value = stateContent(it.news)
                 },
                 onError = {
                     mutableData.value = stateError(it)

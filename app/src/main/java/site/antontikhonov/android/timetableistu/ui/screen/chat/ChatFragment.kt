@@ -10,4 +10,6 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
+
 }

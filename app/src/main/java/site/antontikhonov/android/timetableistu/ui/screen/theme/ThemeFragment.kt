@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -23,25 +24,26 @@ import site.antontikhonov.android.timetableistu.architecture.State
 import site.antontikhonov.android.timetableistu.databinding.FragmentThemeBinding
 import site.antontikhonov.android.timetableistu.pojo.ThemeEntity
 
+private const val SPAN_COUNT_THEMES = 3
+
 class ThemeFragment : Fragment(R.layout.fragment_theme) {
 
     private val viewModel by viewModel<ThemeViewModel>()
     private val preferences: SharedPreferences by inject()
     private val adapter = ThemeAdapter(::saveImage)
-    private lateinit var viewBinding: FragmentThemeBinding
+    private val viewBinding: FragmentThemeBinding by viewBinding(FragmentThemeBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = FragmentThemeBinding.bind(view)
         initView()
         viewModel.data.observe(viewLifecycleOwner, ::renderUi)
-        viewModel.loadGroupNumber()
+        viewModel.loadThemes()
     }
 
     private fun initView() {
         with(viewBinding) {
             rvTheme.adapter = adapter
-            (rvTheme.layoutManager as? GridLayoutManager)?.spanCount = 3
+            (rvTheme.layoutManager as? GridLayoutManager)?.spanCount = SPAN_COUNT_THEMES
             rvTheme.addItemDecoration(ThemeGridDecoration(R.dimen.theme_grid_spacing))
         }
     }
@@ -56,23 +58,24 @@ class ThemeFragment : Fragment(R.layout.fragment_theme) {
         }
     }
 
-    private fun saveImage(url: String, name: String) {
+    private fun saveImage(theme: ThemeEntity) {
         Glide.with(requireContext()).asBitmap()
-            .load(url)
+            .load(theme.url)
             .into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     activity?.openFileOutput(THEME_IMAGE_NAME, Context.MODE_PRIVATE).use {
                         resource.compress(Bitmap.CompressFormat.PNG, 100, it)
-                        (activity as? MainActivity)?.updateBackground()
-                        preferences.edit()
-                            ?.putBoolean(THEME_LOADED_TAG, true)
-                            ?.apply()
-                        Toast.makeText(
-                            requireContext(),
-                            String.format(getString(R.string.theme_changed_toast_message), name),
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
+                    (activity as? MainActivity)?.restartActivity()
+                    preferences.edit()
+                        ?.putBoolean(THEME_LOADED_TAG, true)
+                        ?.putBoolean("isDarkTheme", theme.isDarkTheme)
+                        ?.apply()
+                    Toast.makeText(
+                        requireContext(),
+                        String.format(getString(R.string.theme_changed_toast_message), theme.name),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) = Unit

@@ -35,7 +35,7 @@
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="colorPri"
+        android:background="@color/dark_black_transparent"
         app:itemIconTint="@color/bottom_navigation_colors"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"

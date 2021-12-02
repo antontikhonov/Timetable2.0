@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import site.antontikhonov.android.timetableistu.architecture.State
+import site.antontikhonov.android.timetableistu.architecture.stateContent
 import site.antontikhonov.android.timetableistu.architecture.stateError
 import site.antontikhonov.android.timetableistu.architecture.stateLoading
 import site.antontikhonov.android.timetableistu.data.ThemeRepository
@@ -25,7 +26,7 @@ class ThemeViewModel(private val themeRepository: ThemeRepository) : ViewModel()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
-                    mutableData.value = State(it.themes)
+                    mutableData.value = stateContent(it.themes)
                 },
                 onError = {
                     mutableData.value = stateError(it)

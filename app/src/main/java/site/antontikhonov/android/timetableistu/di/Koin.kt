@@ -14,7 +14,7 @@ import site.antontikhonov.android.timetableistu.ui.screen.theme.ThemeViewModel
 import site.antontikhonov.android.timetableistu.ui.screen.timetable.TimetableViewModel
 
 const val THEME_SHARED_PREFERENCES_NAME = "theme_preferences"
-private const val URL = "https://antontikhonov.ru/timetable/"
+private const val BASE_URL = "https://antontikhonov.ru/timetable/"
 
 val appModule = module {
 
@@ -26,7 +26,7 @@ val appModule = module {
 val networkModule = module {
     single {
         Retrofit.Builder()
-            .baseUrl(URL)
+            .baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

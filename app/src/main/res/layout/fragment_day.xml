@@ -24,9 +24,9 @@
         android:background="@drawable/round"
         android:gravity="center_horizontal"
         android:padding="16dp"
-        android:text="Занятий нет"
+        android:text="@string/no_classes"
         android:textColor="@color/white"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:visibility="gone"
         tools:visibility="visible" />
 

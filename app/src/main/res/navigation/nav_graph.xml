@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/timetableFragment"
-        android:name="site.antontikhonov.android.timetableistu.ui.screen.timetable.TimetableFragment"
+        android:name="ru.antontikhonov.android.timetableistu.ui.screen.timetable.TimetableFragment"
         android:label="@string/timetable"
         tools:layout="@layout/fragment_timetable" />
     <action
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/chatFragment"
-        android:name="site.antontikhonov.android.timetableistu.ui.screen.chat.ChatFragment"
+        android:name="ru.antontikhonov.android.timetableistu.ui.screen.chat.ChatFragment"
         android:label="@string/chat"
         tools:layout="@layout/fragment_chat" />
     <action
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="site.antontikhonov.android.timetableistu.ui.screen.news.NewsFragment"
+        android:name="ru.antontikhonov.android.timetableistu.ui.screen.news.NewsFragment"
         android:label="@string/news"
         tools:layout="@layout/fragment_news" />
     <action
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="site.antontikhonov.android.timetableistu.ui.screen.settings.SettingsFragment"
+        android:name="ru.antontikhonov.android.timetableistu.ui.screen.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings">
         <action
@@ -46,6 +46,6 @@
         app:destination="@id/settingsFragment" />
     <fragment
         android:id="@+id/themeFragment"
-        android:name="site.antontikhonov.android.timetableistu.ui.screen.theme.ThemeFragment"
+        android:name="ru.antontikhonov.android.timetableistu.ui.screen.theme.ThemeFragment"
         android:label="ThemeFragment" />
 </navigation>

@@ -34,7 +34,7 @@ class TimetableViewModel(private val timetableRepository: TimetableRepository) :
                     mutableParity.value = getParity()
                 },
                 onError = {
-
+                    //todo прописать обработку ошибок
                 }
             )
 
@@ -57,7 +57,7 @@ class TimetableViewModel(private val timetableRepository: TimetableRepository) :
                     mutableData.value = it
                 },
                 onError = {
-
+                    //todo прописать обработку ошибок
                 }
             )
     }

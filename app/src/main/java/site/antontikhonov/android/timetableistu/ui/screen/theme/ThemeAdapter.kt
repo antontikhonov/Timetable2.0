@@ -17,7 +17,8 @@ class ThemeAdapter(
 ) : ListAdapter<ThemeEntity, ThemeAdapter.ThemeViewHolder>(ThemeDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThemeViewHolder {
-        return ThemeViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_theme, parent, false))
+        return ThemeViewHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_theme, parent, false))
     }
 
     override fun onBindViewHolder(holder: ThemeViewHolder, position: Int) {

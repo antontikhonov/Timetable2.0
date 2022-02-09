@@ -7,9 +7,9 @@ interface NewsRepository {
     fun loadNews(): Single<News>
 }
 
-class NewsRepositoryImpl(private val timetableIstuApi: TimetableIstuApi) : NewsRepository {
+class NewsRepositoryImpl(private val timetableApi: TimetableApi) : NewsRepository {
 
     override fun loadNews(): Single<News> {
-        return timetableIstuApi.getNews()
+        return timetableApi.getNews()
     }
 }

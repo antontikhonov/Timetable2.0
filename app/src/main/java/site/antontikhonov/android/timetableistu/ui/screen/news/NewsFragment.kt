@@ -2,6 +2,7 @@ package site.antontikhonov.android.timetableistu.ui.screen.news
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,8 +15,8 @@ import site.antontikhonov.android.timetableistu.pojo.NewsEntity
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
 
-    private val viewBinding by viewBinding(FragmentNewsBinding::bind)
-    private val viewModel by viewModel<NewsViewModel>()
+    private val viewBinding: FragmentNewsBinding by viewBinding(FragmentNewsBinding::bind)
+    private val viewModel: NewsViewModel by viewModel()
     private val adapter = NewsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,6 +42,9 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             recyclerView.isVisible = !state.loading
             state.content?.let {
                 adapter.submitList(it.reversed())
+            }
+            state.error?.let {
+                Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
             }
         }
     }

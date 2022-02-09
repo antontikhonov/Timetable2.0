@@ -8,9 +8,9 @@ interface ThemeRepository {
     fun loadThemes(): Single<Themes>
 }
 
-class ThemeRepositoryImpl(private val timetableIstuApi: TimetableIstuApi) : ThemeRepository {
+class ThemeRepositoryImpl(private val timetableApi: TimetableApi) : ThemeRepository {
 
     override fun loadThemes(): Single<Themes> {
-        return timetableIstuApi.getThemes()
+        return timetableApi.getThemes()
     }
 }

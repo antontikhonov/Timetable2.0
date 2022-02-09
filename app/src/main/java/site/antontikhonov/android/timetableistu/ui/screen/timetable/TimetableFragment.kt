@@ -3,6 +3,7 @@ package site.antontikhonov.android.timetableistu.ui.screen.timetable
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import site.antontikhonov.android.timetableistu.R
@@ -10,15 +11,16 @@ import site.antontikhonov.android.timetableistu.databinding.FragmentTimetableBin
 import java.text.SimpleDateFormat
 import java.util.*
 
-open class TimetableFragment : Fragment(R.layout.fragment_timetable) {
+private const val DATE_PATTERN = "EEE, dd.MM.yyyy"
 
-    private val viewModel by viewModel<TimetableViewModel>()
-    private lateinit var viewBinding: FragmentTimetableBinding
+class TimetableFragment : Fragment(R.layout.fragment_timetable) {
+
+    private val viewModel: TimetableViewModel by viewModel()
+    private val viewBinding: FragmentTimetableBinding by viewBinding(FragmentTimetableBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = FragmentTimetableBinding.bind(view)
-        val formatter = SimpleDateFormat("EEE, dd.MM.yyyy", Locale.getDefault())
+        val formatter = SimpleDateFormat(DATE_PATTERN, Locale.getDefault())
         with(viewBinding) {
             date.text = formatter.format(Date())
             viewPager.adapter = DayPagerAdapter(this@TimetableFragment)
@@ -40,9 +42,9 @@ open class TimetableFragment : Fragment(R.layout.fragment_timetable) {
         viewModel.parity.observe(viewLifecycleOwner, {
             with(viewBinding) {
                 weekParity.text = if (it == TimetableViewModel.Parity.ODD) {
-                    requireContext().getString(R.string.odd_week)
+                    getString(R.string.odd_week)
                 } else {
-                    requireContext().getString(R.string.even_week)
+                    getString(R.string.even_week)
                 }
             }
         })

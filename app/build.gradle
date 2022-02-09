@@ -7,15 +7,15 @@ plugins {
 
 ext {
     retrofit_version = '2.9.0'
-    nav_version = '2.3.5'
-    koin_version = '3.1.2'
+    nav_version = '2.4.1'
+    koin_version = '3.1.3'
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "site.antontikhonov.android.timetableistu"
+        applicationId "ru.antontikhonov.android.timetableistu"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -44,11 +44,11 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.3'
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.6'
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'

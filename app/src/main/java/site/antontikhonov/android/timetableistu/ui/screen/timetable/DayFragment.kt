@@ -16,8 +16,8 @@ private const val DAY_NUMBER = "day_number"
 
 class DayFragment : Fragment(R.layout.fragment_day) {
 
-    private val viewModel by viewModel<TimetableViewModel>()
-    private val adapter by lazy { TimetableAdapter() }
+    private val viewModel: TimetableViewModel by viewModel()
+    private val adapter = TimetableAdapter()
     private val viewBinding: FragmentDayBinding by viewBinding(FragmentDayBinding::bind)
 
     @DimenRes
@@ -27,7 +27,7 @@ class DayFragment : Fragment(R.layout.fragment_day) {
         super.onViewCreated(view, savedInstanceState)
         with(viewBinding.recyclerView) {
             adapter = this@DayFragment.adapter
-            addItemDecoration(ItemDecorator(getDimenInPixels(view, startMargin)))
+            addItemDecoration(ItemDecorator(resources.getDimensionPixelSize(startMargin)))
         }
         val number = arguments?.getInt(DAY_NUMBER)!!
         viewModel.data.observe(viewLifecycleOwner, {
@@ -41,16 +41,14 @@ class DayFragment : Fragment(R.layout.fragment_day) {
         viewModel.loadTimetable()
     }
 
-    private fun getDimenInPixels(view: View, marginRes: Int) =
-        view.context.resources.getDimensionPixelSize(marginRes)
-
     companion object {
 
-        fun newInstance(dayNumber: Int): DayFragment =
-            DayFragment().also { fragment ->
+        fun newInstance(dayNumber: Int): DayFragment {
+            return DayFragment().also { fragment ->
                 fragment.arguments = Bundle().also {
                     it.putInt(DAY_NUMBER, dayNumber)
                 }
             }
+        }
     }
 }

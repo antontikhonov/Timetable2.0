@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateUi() {
         openFileInput(THEME_IMAGE_NAME).use { fos ->
             val bitmap = BitmapFactory.decodeStream(fos)
-            findViewById<ImageView>(R.id.imageView).setImageBitmap(bitmap)
+            viewBinding.imageView.setImageBitmap(bitmap)
             fos.close()
         }
     }
@@ -53,18 +52,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
+        AppBarConfiguration(
+            setOf(
+                R.id.timetableFragment,
+                R.id.chatFragment,
+                R.id.newsFragment,
+                R.id.settingsFragment
+            )
+        )
         (supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment)
-            .navController.also {
-                AppBarConfiguration(
-                    setOf(
-                        R.id.timetableFragment,
-                        R.id.chatFragment,
-                        R.id.newsFragment,
-                        R.id.settingsFragment
-                    )
-                )
-                fragmentNavigator = FragmentNavigator(it)
-                viewBinding.bottomNavigation.setupWithNavController(it)
+            .navController.also { navController ->
+                fragmentNavigator = FragmentNavigator(navController)
+                viewBinding.bottomNavigation.setupWithNavController(navController)
             }
     }
 }

@@ -10,7 +10,7 @@ import site.antontikhonov.android.timetableistu.databinding.FragmentSettingsBind
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
-    private val viewBinding by viewBinding(FragmentSettingsBinding::bind)
+    private val viewBinding: FragmentSettingsBinding by viewBinding(FragmentSettingsBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

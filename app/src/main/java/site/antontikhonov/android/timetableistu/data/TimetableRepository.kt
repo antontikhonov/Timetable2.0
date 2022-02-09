@@ -7,3 +7,10 @@ interface TimetableRepository {
 
     fun loadTimetable(): Single<TimetableEntity>
 }
+
+class TimetableRepositoryImpl(private val timetableApi: TimetableApi) : TimetableRepository {
+
+    override fun loadTimetable(): Single<TimetableEntity> {
+        return timetableApi.getTimetable()
+    }
+}

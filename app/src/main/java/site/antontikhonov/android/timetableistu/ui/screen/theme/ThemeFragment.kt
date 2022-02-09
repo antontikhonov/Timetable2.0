@@ -28,7 +28,7 @@ private const val SPAN_COUNT_THEMES = 3
 
 class ThemeFragment : Fragment(R.layout.fragment_theme) {
 
-    private val viewModel by viewModel<ThemeViewModel>()
+    private val viewModel: ThemeViewModel by viewModel()
     private val preferences: SharedPreferences by inject()
     private val adapter = ThemeAdapter(::saveImage)
     private val viewBinding: FragmentThemeBinding by viewBinding(FragmentThemeBinding::bind)

@@ -30,7 +30,7 @@ val networkModule = module {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(TimetableIstuApi::class.java)
+            .create(TimetableApi::class.java)
     }
 }
 

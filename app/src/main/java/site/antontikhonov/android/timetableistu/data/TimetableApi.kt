@@ -6,7 +6,7 @@ import site.antontikhonov.android.timetableistu.pojo.News
 import site.antontikhonov.android.timetableistu.pojo.Themes
 import site.antontikhonov.android.timetableistu.pojo.TimetableEntity
 
-interface TimetableIstuApi {
+interface TimetableApi {
 
     @GET("test.json")
     fun getTimetable(): Single<TimetableEntity>

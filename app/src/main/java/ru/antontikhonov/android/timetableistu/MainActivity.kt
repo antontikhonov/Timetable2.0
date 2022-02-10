@@ -13,6 +13,7 @@ import ru.antontikhonov.android.timetableistu.databinding.ActivityMainBinding
 
 const val EXCEPTION_MESSAGE = "there is no such menu item"
 const val THEME_LOADED_TAG = "theme_loaded_tag"
+const val GROUP_NUMBER_TAG = "group_number_tag"
 const val THEME_IMAGE_NAME = "theme.png"
 
 class MainActivity : AppCompatActivity() {

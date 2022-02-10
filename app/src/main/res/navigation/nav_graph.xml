@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_themeFragment"
             app:destination="@id/themeFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_groupsFragment"
+            app:destination="@id/groupsFragment" />
     </fragment>
     <action
         android:id="@+id/action_global_settingsFragment"
@@ -48,4 +51,8 @@
         android:id="@+id/themeFragment"
         android:name="ru.antontikhonov.android.timetableistu.ui.screen.theme.ThemeFragment"
         android:label="ThemeFragment" />
+    <fragment
+        android:id="@+id/groupsFragment"
+        android:name="ru.antontikhonov.android.timetableistu.ui.screen.groups.GroupsFragment"
+        android:label="GroupsFragment" />
 </navigation>

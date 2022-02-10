@@ -6,20 +6,6 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/timetableHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dark_black_transparent"
-        android:padding="16dp"
-        android:text="@string/settings"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:textColor="@color/black" />
-
-    <TextView
         android:id="@+id/groupChoiceButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +20,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/timetableHeader" />
+
+    <TextView
+        android:id="@+id/timetableHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_black_transparent"
+        android:padding="16dp"
+        android:text="@string/settings"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColor="@color/black" />
 
     <TextView
         android:id="@+id/themeChoiceButton"

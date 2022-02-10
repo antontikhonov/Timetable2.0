@@ -15,8 +15,13 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.themeChoiceButton.setOnClickListener {
-            findNavController().navigate(R.id.action_settingsFragment_to_themeFragment)
+        with(viewBinding) {
+            groupChoiceButton.setOnClickListener {
+                findNavController().navigate(R.id.action_settingsFragment_to_groupsFragment)
+            }
+            themeChoiceButton.setOnClickListener {
+                findNavController().navigate(R.id.action_settingsFragment_to_themeFragment)
+            }
         }
     }
 }

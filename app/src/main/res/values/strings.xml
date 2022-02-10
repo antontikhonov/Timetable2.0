@@ -19,8 +19,10 @@
     <string name="choice_theme_button">Выбор фона</string>
 
     <string name="theme_changed_toast_message">Фон изменён на %1$s</string>
+    <string name="group_changed_toast_message">Группа изменена на %1$s</string>
 
     <string name="chat_not_ready">Чатик пока не готов ;(</string>
     <string name="news_not_found">Новостей пока нет ;(</string>
     <string name="no_classes">Занятий нет</string>
+    <string name="search_hint">Б22-666-1</string>
 </resources>

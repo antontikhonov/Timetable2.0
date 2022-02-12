@@ -16,19 +16,19 @@ import ru.antontikhonov.android.timetableistu.ui.screen.news.NewsViewModel
 import ru.antontikhonov.android.timetableistu.ui.screen.theme.ThemeViewModel
 import ru.antontikhonov.android.timetableistu.ui.screen.timetable.TimetableViewModel
 
-const val THEME_SHARED_PREFERENCES_NAME = "theme_preferences"
+private const val THEME_SHARED_PREFERENCES_NAME = "theme_preferences"
 private const val BASE_URL = "https://antontikhonov.ru/timetable/"
+private const val GSON_DATE_FORMAT = "dd.MM.yyyy hh:mm:ss"
 
 val appModule = module {
 
     single<SharedPreferences> {
-        androidApplication().getSharedPreferences(THEME_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        androidApplication().getSharedPreferences(
+            THEME_SHARED_PREFERENCES_NAME,
+            Context.MODE_PRIVATE
+        )
     }
 }
-
-private val gson: Gson = GsonBuilder()
-    .setLenient()
-    .create()
 
 val networkModule = module {
     single {
@@ -41,14 +41,20 @@ val networkModule = module {
     }
 }
 
+private val gson: Gson = GsonBuilder()
+    .setDateFormat(GSON_DATE_FORMAT)
+    .setLenient()
+    .create()
+
 val timetableViewModelModule = module {
-    viewModel { TimetableViewModel(get()) }
+    viewModel { TimetableViewModel(get(), get()) }
     viewModel { ThemeViewModel(get()) }
     viewModel { NewsViewModel(get()) }
     viewModel { GroupsViewModel(get()) }
 
-    single<TimetableRepository> { TimetableRepositoryImpl(get()) }
+    single<TimetableRepository> { TimetableRepositoryImpl(get(), get()) }
     single<ThemeRepository> { ThemeRepositoryImpl(get()) }
     single<NewsRepository> { NewsRepositoryImpl(get()) }
     single<GroupsRepository> { GroupsRepositoryImpl(get()) }
+    single<StartDateRepository> { StartDateRepositoryImpl(get()) }
 }

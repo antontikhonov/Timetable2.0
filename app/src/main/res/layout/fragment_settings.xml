@@ -6,22 +6,6 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/groupChoiceButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round"
-        android:paddingHorizontal="64dp"
-        android:paddingVertical="16dp"
-        android:text="@string/choice_group_button"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timetableHeader" />
-
-    <TextView
         android:id="@+id/timetableHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,18 +20,39 @@
         tools:textColor="@color/black" />
 
     <TextView
+        android:id="@+id/groupChoiceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round"
+        android:drawablePadding="16dp"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="16dp"
+        android:text="@string/choice_group_button"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:drawableStartCompat="@drawable/ic_view_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timetableHeader" />
+
+    <TextView
         android:id="@+id/themeChoiceButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/round"
-        android:paddingHorizontal="64dp"
+        android:drawablePadding="16dp"
+        android:paddingHorizontal="32dp"
         android:paddingVertical="16dp"
         android:text="@string/choice_theme_button"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:drawableStartCompat="@drawable/ic_wallpaper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/groupChoiceButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

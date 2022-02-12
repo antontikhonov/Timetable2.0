@@ -2,15 +2,15 @@ package ru.antontikhonov.android.timetableistu.data
 
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
-import ru.antontikhonov.android.timetableistu.pojo.Groups
-import ru.antontikhonov.android.timetableistu.pojo.News
-import ru.antontikhonov.android.timetableistu.pojo.Themes
-import ru.antontikhonov.android.timetableistu.pojo.TimetableEntity
+import retrofit2.http.Path
+import ru.antontikhonov.android.timetableistu.pojo.*
 
 interface TimetableApi {
 
-    @GET("test.json")
-    fun getTimetable(): Single<TimetableEntity>
+    @GET("timetable/{id}")
+    fun getTimetable(
+        @Path("id") id: String
+    ): Single<TimetableEntity>
 
     @GET("theme/themes.json")
     fun getThemes(): Single<Themes>
@@ -20,4 +20,7 @@ interface TimetableApi {
 
     @GET("groups")
     fun getGroups(): Single<Groups>
+
+    @GET("start-date")
+    fun getStartDate(): Single<StartDate>
 }

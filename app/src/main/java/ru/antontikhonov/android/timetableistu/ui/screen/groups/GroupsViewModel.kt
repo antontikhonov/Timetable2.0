@@ -11,6 +11,7 @@ import ru.antontikhonov.android.timetableistu.architecture.stateContent
 import ru.antontikhonov.android.timetableistu.architecture.stateError
 import ru.antontikhonov.android.timetableistu.architecture.stateLoading
 import ru.antontikhonov.android.timetableistu.data.GroupsRepository
+import java.util.*
 
 class GroupsViewModel(private val groupsRepository: GroupsRepository) : ViewModel() {
 
@@ -23,9 +24,14 @@ class GroupsViewModel(private val groupsRepository: GroupsRepository) : ViewMode
         groupsRepository.loadGroups()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .map {
+                it.groups.map { group ->
+                    group.uppercase(Locale.getDefault())
+                }
+            }
             .subscribeBy(
                 onSuccess = {
-                    mutableData.value = stateContent(it.groups)
+                    mutableData.value = stateContent(it)
                 },
                 onError = {
                     mutableData.value = stateError(it)
@@ -35,7 +41,7 @@ class GroupsViewModel(private val groupsRepository: GroupsRepository) : ViewMode
 
     fun findGroup(query: String): List<String> {
         return mutableData.value?.content?.filter {
-            it.startsWith(query)
+            it.startsWith(query.uppercase(Locale.getDefault()))
         } ?: emptyList()
     }
 }

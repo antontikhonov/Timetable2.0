@@ -39,4 +39,5 @@
         android:theme="@style/ProgressBarStyle"
         android:visibility="visible"
         tools:visibility="visible" />
+
 </FrameLayout>

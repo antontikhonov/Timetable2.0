@@ -2,7 +2,6 @@ package ru.antontikhonov.android.timetableistu.ui.screen.news
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +11,7 @@ import ru.antontikhonov.android.timetableistu.R
 import ru.antontikhonov.android.timetableistu.architecture.State
 import ru.antontikhonov.android.timetableistu.databinding.FragmentNewsBinding
 import ru.antontikhonov.android.timetableistu.pojo.NewsEntity
+import ru.antontikhonov.android.timetableistu.ui.screen.showToast
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
 
@@ -44,7 +44,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 adapter.submitList(it.reversed())
             }
             state.error?.let {
-                Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
+                requireContext().showToast(getString(R.string.error_message))
             }
         }
     }

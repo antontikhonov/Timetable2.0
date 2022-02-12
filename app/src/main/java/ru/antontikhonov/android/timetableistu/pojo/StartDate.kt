@@ -1,9 +1,10 @@
 package ru.antontikhonov.android.timetableistu.pojo
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
-data class Groups(
+data class StartDate(
 
-    @SerializedName("groups")
-    val groups: List<String>,
+    @SerializedName("start_date")
+    val startDate: Date
 )

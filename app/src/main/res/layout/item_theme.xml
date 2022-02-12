@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/wallpaper_item_image_description"
         android:scaleType="centerCrop"
         android:src="@drawable/harley"
         tools:src="@drawable/harley" />
@@ -23,4 +24,5 @@
         android:textColor="@color/white"
         tools:text="Harley"
         tools:textColor="@color/black" />
+
 </LinearLayout>

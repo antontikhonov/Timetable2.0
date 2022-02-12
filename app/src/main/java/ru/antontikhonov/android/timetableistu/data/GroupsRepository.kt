@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.core.Single
 import ru.antontikhonov.android.timetableistu.pojo.Groups
 
 interface GroupsRepository {
+
     fun loadGroups(): Single<Groups>
 }
 

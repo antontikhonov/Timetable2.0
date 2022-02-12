@@ -10,6 +10,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/wallpaper_description"
         android:scaleType="centerCrop"
         android:src="@drawable/harley"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,4 +43,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

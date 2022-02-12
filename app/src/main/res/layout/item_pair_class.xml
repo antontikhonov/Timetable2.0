@@ -59,4 +59,5 @@
         app:layout_constraintTop_toBottomOf="@+id/decoration"
         tools:text="(л/р) Электрический привод Булат, 1-309"
         tools:textColor="@color/black" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

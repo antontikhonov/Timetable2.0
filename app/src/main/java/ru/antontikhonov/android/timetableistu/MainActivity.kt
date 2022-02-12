@@ -15,6 +15,8 @@ const val EXCEPTION_MESSAGE = "there is no such menu item"
 const val THEME_LOADED_TAG = "theme_loaded_tag"
 const val GROUP_NUMBER_TAG = "group_number_tag"
 const val THEME_IMAGE_NAME = "theme.png"
+const val FIRST_LAUNCH_TAG = "isFirstLaunch"
+const val GROUPS_NAVIGATION_ID = 0
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,16 +25,21 @@ class MainActivity : AppCompatActivity() {
     private val viewBinding: ActivityMainBinding by viewBinding(ActivityMainBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_TimetableISTU)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initNavigation()
 
-        viewBinding.bottomNavigation.setOnItemSelectedListener {
-            fragmentNavigator.navigateByItemId(it.itemId)
-            true
-        }
-        if (savedInstanceState == null) {
-            viewBinding.bottomNavigation.selectedItemId = R.id.timetable
+        if (preferences.getBoolean(FIRST_LAUNCH_TAG, true)) {
+            fragmentNavigator.navigateByItemId(GROUPS_NAVIGATION_ID)
+        } else {
+            viewBinding.bottomNavigation.setOnItemSelectedListener {
+                fragmentNavigator.navigateByItemId(it.itemId)
+                true
+            }
+            if (savedInstanceState == null) {
+                viewBinding.bottomNavigation.selectedItemId = R.id.timetable
+            }
         }
         if (preferences.getBoolean(THEME_LOADED_TAG, false)) {
             updateUi()

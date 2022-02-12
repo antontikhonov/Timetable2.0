@@ -51,6 +51,10 @@
         android:id="@+id/themeFragment"
         android:name="ru.antontikhonov.android.timetableistu.ui.screen.theme.ThemeFragment"
         android:label="ThemeFragment" />
+
+    <action
+        android:id="@+id/action_global_groupsFragment"
+        app:destination="@id/groupsFragment" />
     <fragment
         android:id="@+id/groupsFragment"
         android:name="ru.antontikhonov.android.timetableistu.ui.screen.groups.GroupsFragment"

@@ -26,6 +26,10 @@
     <string name="search_hint">Найти свою группу</string>
     <string name="error_message">Произошла ошибка. Попробуй позже.</string>
 
+    <string name="positive_answer_dialog">Окей</string>
+    <string name="message_dialog">Выбери номер своей группы, для которой нужно загрузить расписание.\n\nНомер группы ты в любой момент сможешь изменить в настройках.</string>
+    <string name="title_dialog">Добро пожаловать!</string>
+
     <string name="wallpaper_description">wallpaper</string>
     <string name="news_image_description">news_image</string>
     <string name="wallpaper_item_image_description">wallpaper_item_image</string>

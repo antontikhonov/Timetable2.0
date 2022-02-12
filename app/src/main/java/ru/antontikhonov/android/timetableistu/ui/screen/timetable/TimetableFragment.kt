@@ -8,10 +8,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.antontikhonov.android.timetableistu.R
 import ru.antontikhonov.android.timetableistu.databinding.FragmentTimetableBinding
-import java.text.SimpleDateFormat
-import java.util.*
-
-private const val DATE_PATTERN = "EEE, dd.MM.yyyy"
 
 class TimetableFragment : Fragment(R.layout.fragment_timetable) {
 
@@ -20,9 +16,7 @@ class TimetableFragment : Fragment(R.layout.fragment_timetable) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val formatter = SimpleDateFormat(DATE_PATTERN, Locale.getDefault())
         with(viewBinding) {
-            date.text = formatter.format(Date())
             viewPager.adapter = DayPagerAdapter(this@TimetableFragment)
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 when (position) {
@@ -36,18 +30,19 @@ class TimetableFragment : Fragment(R.layout.fragment_timetable) {
             }.attach()
         }
 
-        viewModel.number.observe(viewLifecycleOwner) {
-            viewBinding.timetableHeader.text = it
-        }
-        viewModel.parity.observe(viewLifecycleOwner) {
-            with(viewBinding) {
-                weekParity.text = if (it == TimetableViewModel.Parity.ODD) {
-                    getString(R.string.odd_week)
-                } else {
-                    getString(R.string.even_week)
+        viewModel.mainInfo.observe(viewLifecycleOwner) { state ->
+            state.content?.let {
+                with(viewBinding) {
+                    timetableHeader.text = it.groupNumber
+                    date.text = it.currentDate
+                    weekParity.text = if (it.weekParity == Parity.ODD) {
+                        getString(R.string.odd_week)
+                    } else {
+                        getString(R.string.even_week)
+                    }
                 }
             }
         }
-        viewModel.loadGroupNumber()
+        viewModel.loadMainInfo()
     }
 }

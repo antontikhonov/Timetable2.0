@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.antontikhonov.android.timetableistu.R
 
-class GroupsAdapter(
-    val onGroupClick: (String) -> Unit
-) : ListAdapter<String, GroupsAdapter.GroupsViewHolder>(StringDiffUtil) {
+class GroupsAdapter(val onGroupClick: (String) -> Unit) :
+    ListAdapter<String, GroupsAdapter.GroupsViewHolder>(StringDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupsViewHolder {
         return GroupsViewHolder(

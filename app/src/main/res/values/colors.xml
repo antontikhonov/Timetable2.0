@@ -4,6 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dirty_yellow">#D4B86B</color>
 
+    <color name="silver">#ADADAD</color>
+
     <color name="black_transparent">#80000000</color>
     <color name="dark_black_transparent">#B3000000</color>
 </resources>

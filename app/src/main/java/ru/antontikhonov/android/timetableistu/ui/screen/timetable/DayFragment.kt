@@ -11,6 +11,7 @@ import ru.antontikhonov.android.timetableistu.R
 import ru.antontikhonov.android.timetableistu.databinding.FragmentDayBinding
 import ru.antontikhonov.android.timetableistu.recycler.ItemDecorator
 import ru.antontikhonov.android.timetableistu.recycler.TimetableAdapter
+import ru.antontikhonov.android.timetableistu.ui.screen.showToast
 
 private const val DAY_NUMBER = "day_number"
 
@@ -30,13 +31,19 @@ class DayFragment : Fragment(R.layout.fragment_day) {
             addItemDecoration(ItemDecorator(resources.getDimensionPixelSize(startMargin)))
         }
         val number = arguments?.getInt(DAY_NUMBER)!!
-        viewModel.data.observe(viewLifecycleOwner) {
+        viewModel.data.observe(viewLifecycleOwner) { state ->
             with(viewBinding) {
-                classNotFound.isVisible = it[number].isEmpty()
-                viewBinding.progressBar.isVisible = false
-                viewBinding.recyclerView.isVisible = it[number].isNotEmpty()
+                progressBar.isVisible = state.loading
+                recyclerView.isVisible = !state.loading
+                state.content?.let {
+                    classNotFound.isVisible = it[number].isEmpty()
+                    recyclerView.isVisible = it[number].isNotEmpty()
+                    adapter.submitList(it[number])
+                }
             }
-            adapter.submitList(it[number])
+            state.error?.let {
+                requireContext().showToast(getString(R.string.error_message))
+            }
         }
         viewModel.loadTimetable()
     }

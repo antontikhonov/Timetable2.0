@@ -5,46 +5,37 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.kotlin.zipWith
 import io.reactivex.rxjava3.schedulers.Schedulers
+import ru.antontikhonov.android.timetableistu.architecture.State
+import ru.antontikhonov.android.timetableistu.architecture.stateError
+import ru.antontikhonov.android.timetableistu.architecture.stateLoading
+import ru.antontikhonov.android.timetableistu.data.StartDateRepository
 import ru.antontikhonov.android.timetableistu.data.TimetableRepository
 import ru.antontikhonov.android.timetableistu.pojo.PairClassEntity
+import java.text.SimpleDateFormat
 import java.util.*
 
 private const val TWO_WEEK_IN_MILLISECONDS = 60 * 60 * 24 * 14 * 1000
+private const val DATE_PATTERN = "EEE, dd.MM.yyyy"
 
-class TimetableViewModel(private val timetableRepository: TimetableRepository) : ViewModel() {
+class TimetableViewModel(
+    private val timetableRepository: TimetableRepository,
+    private val startDateRepository: StartDateRepository,
+) : ViewModel() {
 
-    val data: LiveData<List<List<PairClassEntity>>>
+    val data: LiveData<State<List<List<PairClassEntity>>>>
         get() = mutableData
-    val number: LiveData<String>
-        get() = mutableNumber
-    val parity: LiveData<Parity>
-        get() = mutableParity
-    private val mutableData = MutableLiveData<List<List<PairClassEntity>>>()
-    private val mutableNumber = MutableLiveData<String>()
-    private val mutableParity = MutableLiveData<Parity>()
-
-    fun loadGroupNumber() {
-        timetableRepository.loadTimetable()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy(
-                onSuccess = {
-                    mutableNumber.value = it.numberOfGroup
-                    mutableParity.value = getParity()
-                },
-                onError = {
-                    //todo прописать обработку ошибок
-                }
-            )
-
-    }
+    val mainInfo: LiveData<State<MainInfo>>
+        get() = mutableMainInfo
+    private val mutableData = MutableLiveData<State<List<List<PairClassEntity>>>>()
+    private val mutableMainInfo = MutableLiveData<State<MainInfo>>()
 
     fun loadTimetable() {
+        mutableData.value = stateLoading()
         timetableRepository.loadTimetable()
             .subscribeOn(Schedulers.io())
             .map { result ->
-                mutableNumber.postValue(result.numberOfGroup)
                 result.days.map {
                     it.classes.filter { pairClass ->
                         !(pairClass.odd == null && pairClass.even == null)
@@ -54,27 +45,41 @@ class TimetableViewModel(private val timetableRepository: TimetableRepository) :
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
-                    mutableData.value = it
+                    mutableData.value = State(content = it)
                 },
                 onError = {
-                    //todo прописать обработку ошибок
+                    mutableData.value = State(error = it)
                 }
             )
     }
 
-    private fun getParity(): Parity {
-        val currentDate = Date()
-        val calendar = Calendar.getInstance()
-        calendar.set(2021, Calendar.AUGUST, 30, 0, 0, 0)
-        return if ((currentDate.time - calendar.timeInMillis) % TWO_WEEK_IN_MILLISECONDS < (TWO_WEEK_IN_MILLISECONDS / 2)) {
+    fun loadMainInfo() {
+        timetableRepository.loadTimetable()
+            .zipWith(startDateRepository.loadStartDate())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onSuccess = { (timetableEntity, startDate) ->
+                    val formatter = SimpleDateFormat(DATE_PATTERN, Locale.getDefault())
+                    mutableMainInfo.value = State(
+                        content = MainInfo(
+                            groupNumber = timetableEntity.numberOfGroup.uppercase(Locale.getDefault()),
+                            currentDate = formatter.format(Date()),
+                            weekParity = getParity(startDate.startDate),
+                        )
+                    )
+                },
+                onError = {
+                    mutableMainInfo.value = stateError(it)
+                }
+            )
+    }
+
+    private fun getParity(date: Date): Parity {
+        return if ((Date().time - date.time) % TWO_WEEK_IN_MILLISECONDS < (TWO_WEEK_IN_MILLISECONDS / 2)) {
             Parity.ODD
         } else {
             Parity.EVEN
         }
-    }
-
-    enum class Parity {
-        ODD,
-        EVEN
     }
 }

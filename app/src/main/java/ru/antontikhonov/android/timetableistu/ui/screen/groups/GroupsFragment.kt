@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,6 +18,7 @@ import ru.antontikhonov.android.timetableistu.R
 import ru.antontikhonov.android.timetableistu.architecture.State
 import ru.antontikhonov.android.timetableistu.databinding.FragmentGroupsBinding
 import ru.antontikhonov.android.timetableistu.ui.screen.news.NewsLinearDecoration
+import ru.antontikhonov.android.timetableistu.ui.screen.showToast
 
 class GroupsFragment : Fragment(R.layout.fragment_groups) {
 
@@ -25,11 +27,10 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
     private val preferences: SharedPreferences by inject()
     private val adapter = GroupsAdapter(::changeGroup)
 
-    lateinit var list: List<String>
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        setOnBackPressedListener()
         viewModel.data.observe(viewLifecycleOwner, ::renderUi)
         viewModel.loadNews()
     }
@@ -56,12 +57,11 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
             progressBar.isVisible = state.loading
             recyclerView.isVisible = !state.loading
             state.content?.let {
-                list = it
                 adapter.submitList(it)
                 searchView.isVisible = true
             }
             state.error?.let {
-                Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
+                requireContext().showToast(getString(R.string.error_message))
             }
         }
     }
@@ -71,10 +71,19 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
         preferences.edit()
             ?.putString(GROUP_NUMBER_TAG, group)
             ?.apply()
-        Toast.makeText(
-            requireContext(),
-            String.format(getString(R.string.group_changed_toast_message), group),
-            Toast.LENGTH_LONG
-        ).show()
+        requireContext().showToast(
+            String.format(getString(R.string.group_changed_toast_message), group)
+        )
+    }
+
+    private fun setOnBackPressedListener() {
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().popBackStack()
+                }
+            }
+        )
     }
 }

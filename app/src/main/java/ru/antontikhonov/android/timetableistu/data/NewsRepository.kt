@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.core.Single
 import ru.antontikhonov.android.timetableistu.pojo.News
 
 interface NewsRepository {
+
     fun loadNews(): Single<News>
 }
 

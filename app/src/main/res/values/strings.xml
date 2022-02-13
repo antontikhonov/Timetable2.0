@@ -27,7 +27,7 @@
     <string name="error_message">Произошла ошибка. Попробуй позже.</string>
 
     <string name="positive_answer_dialog">Окей</string>
-    <string name="message_dialog">Выбери номер своей группы, для которой нужно загрузить расписание.\n\nНомер группы ты в любой момент сможешь изменить в настройках.</string>
+    <string name="message_dialog">Выбери номер группы, у которой хочешь посмотреть расписание.\n\nНомер группы ты в любой момент сможешь изменить в настройках.</string>
     <string name="title_dialog">Добро пожаловать!</string>
 
     <string name="wallpaper_description">wallpaper</string>

@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             fragmentNavigator.navigateByItemId(GROUPS_NAVIGATION_ID)
         } else {
             viewBinding.bottomNavigation.setOnItemSelectedListener {
+
                 fragmentNavigator.navigateByItemId(it.itemId)
                 true
             }
@@ -72,6 +73,7 @@ class MainActivity : AppCompatActivity() {
             .navController.also { navController ->
                 fragmentNavigator = FragmentNavigator(navController)
                 viewBinding.bottomNavigation.setupWithNavController(navController)
+                viewBinding.bottomNavigation.setOnItemReselectedListener { }
             }
     }
 }

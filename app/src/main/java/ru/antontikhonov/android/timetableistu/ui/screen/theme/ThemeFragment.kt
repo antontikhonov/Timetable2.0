@@ -89,6 +89,7 @@ class ThemeFragment : Fragment(R.layout.fragment_theme) {
     }
 
     private fun saveImage(theme: ThemeEntity) {
+        viewBinding.progressBar.isVisible = true
         Glide.with(requireContext()).asBitmap()
             .load(theme.url)
             .into(object : CustomTarget<Bitmap>() {

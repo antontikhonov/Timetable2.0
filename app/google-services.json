@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "778619953057",
+    "project_id": "timetable2-ba70f",
+    "storage_bucket": "timetable2-ba70f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778619953057:android:f01569760f93da8f8135e0",
+        "android_client_info": {
+          "package_name": "ru.antontikhonov.android.timetableistu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778619953057-luvq8s91c7durohtmf263ga48b4frn82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-t-PaGB9OI_yLyicbe1CLhPaeKJFLWEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778619953057-luvq8s91c7durohtmf263ga48b4frn82.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

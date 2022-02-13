@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.iterator
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -75,14 +74,6 @@ class MainActivity : AppCompatActivity() {
                 fragmentNavigator = FragmentNavigator(navController)
                 viewBinding.bottomNavigation.setupWithNavController(navController)
                 viewBinding.bottomNavigation.setOnItemReselectedListener { }
-
-                navController.addOnDestinationChangedListener { _, destination, _ ->
-                    for (menuItem in viewBinding.bottomNavigation.menu.iterator()) {
-                        menuItem.isEnabled = true
-                    }
-                    val menu = viewBinding.bottomNavigation.menu.findItem(destination.id)
-                    menu?.isEnabled = false
-                }
             }
     }
 }

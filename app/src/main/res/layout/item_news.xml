@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/chat_not_ready"
         android:textColor="@color/white"
         android:textSize="14sp" />
 

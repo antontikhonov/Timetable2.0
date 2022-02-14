@@ -15,13 +15,13 @@
         app:destination="@id/timetableFragment" />
 
     <fragment
-        android:id="@+id/chatFragment"
-        android:name="ru.antontikhonov.android.timetableistu.ui.screen.chat.ChatFragment"
-        android:label="@string/chat"
-        tools:layout="@layout/fragment_chat" />
+        android:id="@+id/mapFragment"
+        android:name="ru.antontikhonov.android.timetableistu.ui.screen.map.MapFragment"
+        android:label="@string/map"
+        tools:layout="@layout/fragment_map" />
     <action
-        android:id="@+id/action_global_chatFragment"
-        app:destination="@id/chatFragment" />
+        android:id="@+id/action_global_mapFragment"
+        app:destination="@id/mapFragment" />
 
     <fragment
         android:id="@+id/newsFragment"

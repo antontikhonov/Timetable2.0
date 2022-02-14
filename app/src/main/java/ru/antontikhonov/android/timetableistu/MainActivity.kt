@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         AppBarConfiguration(
             setOf(
                 R.id.timetableFragment,
-                R.id.chatFragment,
+                R.id.mapFragment,
                 R.id.newsFragment,
                 R.id.settingsFragment
             )

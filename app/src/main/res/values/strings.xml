@@ -2,7 +2,7 @@
     <string name="app_name">ISTU</string>
 
     <string name="timetable">Расписание</string>
-    <string name="chat">Чатик</string>
+    <string name="map">Окрестности</string>
     <string name="news">Новости</string>
     <string name="settings">Настройки</string>
 
@@ -21,9 +21,8 @@
     <string name="theme_changed_toast_message">Фон изменён на %1$s</string>
     <string name="group_changed_toast_message">Группа изменена на %1$s</string>
 
-    <string name="chat_not_ready">Чатик пока не готов</string>
     <string name="no_classes">Занятий нет</string>
-    <string name="search_hint">Найти свою группу</string>
+    <string name="search_hint">Найди свою группу</string>
     <string name="error_message">Произошла ошибка. Попробуй позже.</string>
 
     <string name="positive_answer_dialog">Окей</string>

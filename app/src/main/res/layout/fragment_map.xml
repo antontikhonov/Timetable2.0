@@ -5,37 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.jsibbold.zoomage.ZoomageView
+        android:id="@+id/mapImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/timetableHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/dark_black_transparent"
         android:padding="16dp"
-        android:text="@string/chat"
+        android:text="@string/map"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:textColor="@color/black" />
-
-    <TextView
-        android:id="@+id/groupChoiceButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round"
-        android:gravity="center"
-        android:paddingHorizontal="64dp"
-        android:paddingVertical="16dp"
-        android:text="@string/chat_not_ready"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:drawableEndCompat="@drawable/ic_sad_smile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

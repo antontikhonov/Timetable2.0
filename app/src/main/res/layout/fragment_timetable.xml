@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBar"
-        app:tabIndicatorColor="@android:color/white"
+        app:tabIndicatorColor="@color/white"
         app:tabSelectedTextColor="@color/dirty_yellow"
         app:tabTextColor="@color/white" />
 

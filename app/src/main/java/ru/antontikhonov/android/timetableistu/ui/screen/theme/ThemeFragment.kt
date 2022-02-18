@@ -51,16 +51,16 @@ class ThemeFragment : Fragment(R.layout.fragment_theme) {
 
     private fun initView() {
         with(viewBinding) {
-            rvTheme.adapter = adapter
-            (rvTheme.layoutManager as? GridLayoutManager)?.spanCount = SPAN_COUNT_THEMES
-            rvTheme.addItemDecoration(ThemeGridDecoration(R.dimen.theme_grid_spacing))
+            recyclerView.adapter = adapter
+            (recyclerView.layoutManager as? GridLayoutManager)?.spanCount = SPAN_COUNT_THEMES
+            recyclerView.addItemDecoration(ThemeGridDecoration(R.dimen.theme_grid_spacing))
         }
     }
 
     private fun renderUi(state: State<List<ThemeEntity>>) {
         with(viewBinding) {
             progressBar.isVisible = state.loading
-            rvTheme.isVisible = !state.loading
+            recyclerView.isVisible = !state.loading
             state.content?.let {
                 adapter.submitList(it)
             }
@@ -105,7 +105,8 @@ class ThemeFragment : Fragment(R.layout.fragment_theme) {
         activity?.openFileOutput(THEME_IMAGE_NAME, Context.MODE_PRIVATE).use {
             compress(Bitmap.CompressFormat.PNG, 100, it)
         }
-        (activity as? MainActivity)?.restartActivity()
+        (activity as? MainActivity)?.updateUi()
+        viewBinding.progressBar.isVisible = false
         preferences.edit()
             ?.putBoolean(THEME_LOADED_TAG, true)
             ?.putBoolean("isDarkTheme", theme?.isDarkTheme ?: false)

@@ -4,7 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dirty_yellow">#D4B86B</color>
 
+    <color name="dark_grey">#1C1C1C</color>
     <color name="silver">#ADADAD</color>
+    <color name="dark_purple">#741285</color>
 
     <color name="black_transparent">#80000000</color>
     <color name="dark_black_transparent">#B3000000</color>

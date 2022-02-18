@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUi() {
+    fun updateUi() {
         openFileInput(THEME_IMAGE_NAME).use { fos ->
             val bitmap = BitmapFactory.decodeStream(fos)
             viewBinding.imageView.setImageBitmap(bitmap)

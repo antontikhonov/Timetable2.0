@@ -14,7 +14,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="16dp"
         android:contentDescription="@string/news_image_description"
-        android:src="@drawable/harley"
+        android:src="@drawable/wide"
         android:visibility="gone"
         tools:visibility="visible" />
 

@@ -13,8 +13,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/wallpaper_item_image_description"
         android:scaleType="centerCrop"
-        android:src="@drawable/harley"
-        tools:src="@drawable/harley" />
+        tools:src="@drawable/wide" />
 
     <TextView
         android:id="@+id/themeHeader"
